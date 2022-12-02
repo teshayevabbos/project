@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<h1>Yangi post hosil qilish</h1>
+
+<form action="{% url 'post_new' %}" enctype="multipart/form-data" method="POST">{% csrf_token%}
+    {{crispy}}
+Title: <input type="text" name="title"> <br>
+
+Content: <textarea name=content>  </textarea><br>
+Img: <input type="file" name="img" ><br>
+<select name="category" id="">
+    {% for ctg in catego %}
+    <option value="{{ctg.id}}">{{ctg.name}}</option>
+    {% endfor %}
+</select><br>
+<hr>
+<input type="submit" value="Blog hosil qilish">
+</form>
+{% endblock content %}
